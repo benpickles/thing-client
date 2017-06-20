@@ -1,0 +1,1 @@
+require 'thing-client/version'
