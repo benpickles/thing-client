@@ -1,0 +1,57 @@
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+
+{
+  "_links": {
+    "self": {
+      "href": "http://example.com/api/lists"
+    }
+  },
+  "_embedded": {
+    "lists": [
+      {
+        "_links": {
+          "self": {
+            "href": "http://example.com/api/lists/1"
+          }
+        },
+        "id": 1,
+        "name": "Shopping",
+        "_embedded": {
+          "items": [
+            {
+              "_links": {
+                "self": {
+                  "href": "http://example.com/api/lists/1/items/1"
+                }
+              },
+              "id": 1,
+              "name": "Eggs",
+              "complete": true
+            },
+            {
+              "_links": {
+                "self": {
+                  "href": "http://example.com/api/lists/1/items/2"
+                }
+              },
+              "id": 2,
+              "name": "Ham",
+              "complete": true
+            },
+            {
+              "_links": {
+                "self": {
+                  "href": "http://example.com/api/lists/1/items/3"
+                }
+              },
+              "id": 3,
+              "name": "Cheese",
+              "complete": false
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
