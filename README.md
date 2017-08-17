@@ -32,12 +32,10 @@ Content-Type: application/json; charset=utf-8
 A link is accessed with `Resource#link` which returns a [`Link`](./lib/thing-client/link.rb) that can be followed, issuing another HTTP request and returning another [`Resource`](./lib/thing-client/resource.rb).
 
 ```ruby
-list = root.link(:lists)
-
-list.link(:self).href
+root.link(:lists).href
 # "http://example.com/api/lists"
 
-lists = link.call
+lists = root.link(:lists).call
 ```
 
 ```
@@ -103,13 +101,11 @@ Content-Type: application/json; charset=utf-8
 An embedded resource is accessed with `Resource#resource` and returns a [`Resource`](./lib/thing-client/resource.rb), its properties are read with `Resource#[]`.
 
 ```ruby
-list = lists.resource(:lists).first.resource(:items).first
+list = lists.resource(:lists).first
 
-list[:id]
-# 1
+list.resource(:items).map { |item| item[:name] }
 
-list[:name]
-# "Eggs"
+# ["Eggs", "Ham", "Cheese"]
 ```
 
 So the gist of it is that a `Resource` can have many `Resource`s any of which can have many `Link`s - it's [HAL](http://stateless.co/hal_specification.html) - any of which can be traversed.
